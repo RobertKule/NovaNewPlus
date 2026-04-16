@@ -1,115 +1,130 @@
 import React from 'react';
-import { Shield, Globe, Users, Target, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Target, Eye, Heart, ShieldCheck, Zap, Globe, Users, Headphones, CheckCircle2 } from 'lucide-react';
 
 const ValueCard = ({ icon: Icon, title, description }) => (
-  <div className="card border border-primary/5 hover:bg-primary/5 transition-all group">
-    <div className="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-      <Icon size={24} />
+  <div className="p-10 rounded-stitch bg-surface-container-lowest shadow-long-fall hover:-translate-y-2 transition-all duration-500 flex flex-col items-start gap-6">
+    <div className="w-14 h-14 rounded-full bg-primary/5 text-primary flex items-center justify-center">
+      <Icon size={24} className="stroke-[2.5px]" />
     </div>
-    <h3 className="text-xl font-bold mb-3 text-on-surface">{title}</h3>
-    <p className="text-on-surface/60 text-sm leading-relaxed">{description}</p>
+    <div>
+      <h3 className="text-xl font-black mb-3 tracking-tight uppercase italic">{title}</h3>
+      <p className="text-sm font-medium leading-relaxed text-on-surface/50">
+        {description}
+      </p>
+    </div>
   </div>
 );
 
 const About = () => {
   return (
-    <div className="bg-surface pb-24 font-body">
-      {/* Hero Section - Aligné sur Stitch Final */}
-      <section className="bg-surface-lowest pt-32 pb-24 px-4 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 -z-10 animate-pulse"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8 text-on-surface leading-tight">
-            Connecter le Haut-Katanga au <span className="text-primary tracking-tight">reste du monde</span>.
-          </h1>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full mb-8"></div>
+    <div className="bg-surface font-display pb-32">
+      {/* Header Section */}
+      <section className="pt-40 pb-32 px-4 text-center bg-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-primary/[0.02] -skew-y-3 origin-center saturate-200"></div>
+        <div className="max-w-4xl mx-auto relative z-10 animate-in fade-in slide-in-from-top duration-1000">
+           <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-8 underline decoration-primary/10 underline-offset-8 decoration-4">Notre Histoire</h4>
+           <h1 className="text-5xl md:text-8xl font-black text-on-surface leading-[0.9] tracking-tighter uppercase italic">
+             Connecter Likasi au reste du <span className="text-primary not-italic">monde.</span>
+           </h1>
+           <p className="text-xl text-on-surface/40 max-w-2xl mx-auto font-medium leading-relaxed italic mt-10">
+             "En tant qu'acteur local majeur, NOVA+ s'engage à transformer l'accessibilité numérique dans le Haut-Katanga avec la technologie satellitaire la plus avancée."
+           </p>
         </div>
       </section>
 
-      {/* Vision Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="animate-in fade-in slide-in-from-left duration-700">
-            <h2 className="text-sm font-black text-primary uppercase tracking-[0.2em] mb-6">Notre Vision</h2>
-            <p className="text-2xl text-on-surface/80 leading-relaxed mb-8 font-light">
-              Chez NOVA+, nous croyons que l'accès à l'information est un droit fondamental. Dans le paysage vaste et diversifié du Haut-Katanga, les infrastructures terrestres traditionnelles ne suffisent plus.
-            </p>
-            <div className="p-8 bg-surface-container-low border-l-4 border-primary rounded-r-stitch italic text-lg text-primary/80">
-              "Nous déployons la technologie satellite LEO pour apporter le haut débit là où les câbles ne peuvent pas aller."
-            </div>
-          </div>
-          <div className="relative animate-in fade-in zoom-in duration-1000">
-            <div className="absolute -inset-4 bg-primary/10 rounded-[40px] rotate-3 -z-10"></div>
-            <img
-              src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&q=80&w=800"
-              alt="Likasi Connectivity"
-              className="rounded-[40px] shadow-2xl relative z-10 w-full grayscale-[0.5] hover:grayscale-0 transition-all duration-700"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section - Aligné sur Stitch */}
-      <section className="py-24 bg-surface px-4">
+      {/* Engagement Section */}
+      <section className="py-32 px-4 bg-surface-container-low">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold text-on-surface">Le socle de notre engagement</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <ValueCard
-              icon={Shield}
-              title="Reliability"
-              description="Une connexion stable, peu importe la météo ou la géographie de Likasi et ses environs."
-            />
-            <ValueCard
-              icon={Target}
-              title="Innovation"
-              description="Utilisation des dernières constellations de satellites en orbite basse pour une latence minimale."
-            />
-            <ValueCard
-              icon={Users}
-              title="Local Commitment"
-              description="Un bureau technique et un support client basés directement à Likasi pour une proximité totale."
-            />
-          </div>
+           <div className="max-w-3xl mb-24">
+              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-6">Notre Engagement</h4>
+              <h2 className="text-4xl md:text-6xl font-black text-on-surface leading-[0.95] tracking-tighter uppercase italic mb-8">
+                L'excellence opérationnelle au service de la région.
+              </h2>
+           </div>
+
+           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <ValueCard 
+                icon={ShieldCheck}
+                title="Fiabilité Absolue"
+                description="Notre infrastructure satellite LEO garantit une connexion stable même dans les zones les plus isolées de Likasi."
+              />
+              <ValueCard 
+                icon={Zap}
+                title="Innovation Continue"
+                description="Nous déployons les dernières technologies SpaceX et satellites pour offrir des débits équivalents à la fibre optique."
+              />
+              <ValueCard 
+                icon={Heart}
+                title="Ancrage Local"
+                description="Nous ne sommes pas juste un fournisseur, nous sommes vos voisins avec un support physique direct sur l'Avenue de l'Église."
+              />
+           </div>
         </div>
       </section>
 
-      {/* Local Presence - Aligné sur Stitch */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 mb-24">
-        <div className="card bg-atmospheric text-white p-12 overflow-hidden relative">
-          <Globe size={300} className="absolute -right-20 -bottom-20 text-white/5 -z-0" />
-          <div className="max-w-2xl relative z-10">
-            <h2 className="text-3xl font-display font-bold mb-6 italic">Présence Locale à Likasi</h2>
-            <p className="text-lg text-white/70 mb-8 leading-relaxed">
-              Notre équipe d'experts katangais assure une installation rapide et une maintenance de proximité.
-            </p>
-            <div className="space-y-6">
-              <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center shrink-0 border border-white/20">
-                  <Target size={20} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-white mb-1">Bureau Technique Likasi</h4>
-                  <p className="text-sm text-white/60">Situé au cœur de la ville, notre centre opérationnel gère le déploiement sur l'ensemble du territoire du Haut-Katanga.</p>
-                </div>
-              </div>
+      {/* Team / Mission Section */}
+      <section className="py-32 px-4 bg-white">
+         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-10 order-2 lg:order-1">
+               <h3 className="text-4xl font-black text-on-surface mb-6 tracking-tight uppercase italic underline decoration-primary/20 decoration-8 underline-offset-4">Notre Appréche</h3>
+               <p className="text-on-surface/60 text-lg leading-relaxed font-medium">
+                 Depuis notre lancement, nous avons compris que la connectivité n'est plus un luxe, mais un moteur de développement économique essentiel pour Likasi.
+               </p>
+               
+               <div className="grid grid-cols-2 gap-8">
+                  <div className="p-6 rounded-stitch bg-surface-container-low">
+                     <p className="text-4xl font-black text-primary mb-2 tracking-tighter italic">500+</p>
+                     <p className="text-[10px] font-black uppercase tracking-widest text-on-surface/30">Clients Actifs</p>
+                  </div>
+                  <div className="p-6 rounded-stitch bg-surface-container-low">
+                     <p className="text-4xl font-black text-primary mb-2 tracking-tighter italic">24/7</p>
+                     <p className="text-[10px] font-black uppercase tracking-widest text-on-surface/30">Monitoring Réseau</p>
+                  </div>
+               </div>
+
+               <div className="space-y-6 pt-6">
+                  {[
+                    "Transparence totale sur les débits réels",
+                    "Installation professionnelle certifiée",
+                    "Épanouissement technologique local"
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-4 group">
+                       <CheckCircle2 size={16} className="text-primary/40 group-hover:text-primary transition-all" />
+                       <span className="font-bold text-on-surface/80 group-hover:text-primary transition-colors italic uppercase tracking-tight text-xs">{item}</span>
+                    </div>
+                  ))}
+               </div>
             </div>
-          </div>
-        </div>
+
+            <div className="relative group order-1 lg:order-2">
+               <div className="absolute inset-0 bg-primary/5 rounded-[40px] rotate-3 -z-10 animate-pulse"></div>
+               <img 
+                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200" 
+                 alt="NOVA+ Team Likasi" 
+                 className="relative z-10 rounded-[40px] shadow-2xl object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+               />
+               <div className="absolute -top-10 -right-10 bg-primary w-24 h-24 rounded-full flex items-center justify-center shadow-2xl z-20 hidden md:flex hover:rotate-12 transition-all">
+                  <Globe className="text-white" size={32} />
+               </div>
+            </div>
+         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="bg-primary py-24 px-4 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6 tracking-tight">Prêt à nous rejoindre ?</h2>
-          <p className="text-white/70 text-lg mb-10 leading-relaxed">
-            Choisissez le forfait qui correspond à vos besoins et entrez dans l'ère de la connectivité NOVA+.
-          </p>
-          <Link to="/offres" className="inline-flex items-center gap-3 py-4 px-10 bg-white text-primary font-bold rounded-stitch hover:bg-surface-container-low transition-all shadow-xl hover:-translate-y-1">
-            Découvrir les offres <ArrowRight size={22} />
-          </Link>
-        </div>
+      {/* Presence Locale Banner */}
+      <section className="py-24 px-4 bg-on-surface text-surface text-center overflow-hidden relative">
+         <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary rounded-full blur-[200px]"></div>
+         </div>
+         <div className="max-w-4xl mx-auto relative z-10">
+            <h2 className="text-4xl md:text-5xl font-black mb-10 tracking-tight uppercase italic underline decoration-white/20 underline-offset-8">Likasi est notre priorité.</h2>
+            <p className="text-surface/60 text-lg leading-relaxed font-medium mb-12">
+              Nous investissons massivement dans les infrastructures locales et la formation technique pour faire de Likasi un hub numérique de référence.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-12 font-black uppercase tracking-[0.3em] text-[10px]">
+               <div className="flex items-center gap-3"><MapPin size={16} /> Avenue de l'Église, Likasi</div>
+               <div className="flex items-center gap-3"><Headphones size={16} /> +243 00 000 000</div>
+            </div>
+         </div>
       </section>
     </div>
   );

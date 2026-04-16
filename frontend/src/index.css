@@ -6,57 +6,58 @@
 
 @layer base {
   body {
-    @apply font-body bg-surface text-on-surface antialiased;
+    @apply bg-surface text-on-surface font-body antialiased;
+    scroll-behavior: smooth;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-display font-bold tracking-tight;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-on-surface;
   }
 }
 
 @layer components {
-  .glass {
-    @apply bg-surface-lowest/80 backdrop-blur-md;
+  .glass-nav {
+    @apply bg-surface-container-lowest/80 backdrop-blur-xl border-b border-on-surface/5;
+  }
+
+  .card-premium {
+    @apply bg-surface-container-lowest rounded-stitch shadow-long-fall transition-all duration-500 hover:-translate-y-1 hover:shadow-xl;
   }
 
   .btn-primary {
-    @apply bg-atmospheric text-white px-6 py-2.5 rounded-stitch font-semibold transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-50;
+    @apply bg-atmospheric text-on-primary font-display font-bold px-8 py-4 rounded-stitch-sm transition-all duration-300 hover:opacity-90 active:scale-95;
   }
 
   .btn-secondary {
-    @apply bg-surface-container-high text-primary px-6 py-2.5 rounded-stitch font-semibold transition-all hover:bg-surface-dim active:scale-[0.98] disabled:opacity-50;
+    @apply bg-surface-container-highest text-primary font-display font-bold px-8 py-4 rounded-stitch-sm transition-all duration-300 hover:bg-surface-container-high active:scale-95;
   }
 
-  .card {
-    @apply bg-surface-lowest rounded-stitch shadow-long-fall p-6 transition-all;
+  /* Orbital Shadows & Accents */
+  .orbital-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(10, 92, 142, 0.08) 0%, rgba(10, 92, 142, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
   }
 
-  /* Zero-border sectioning from design system */
+  /* No-Line transitions */
   .section-alt {
     @apply bg-surface-container-low;
   }
 }
 
-/* Custom animations for satellite vibes */
-@keyframes connectivity-pulse {
-  0% {
-    opacity: 0.1;
-  }
-
-  50% {
-    opacity: 0.2;
-  }
-
-  100% {
-    opacity: 0.1;
-  }
+/* Custom Scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.wave-pulse {
-  animation: connectivity-pulse 4s ease-in-out infinite;
+::-webkit-scrollbar-track {
+  @apply bg-surface;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-surface-dim rounded-full hover:bg-on-surface/20 transition-colors;
 }

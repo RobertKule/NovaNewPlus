@@ -1,156 +1,147 @@
 import React from 'react';
-import { Check, ArrowRight, Zap, Users, Briefcase, Info, BadgeCheck, Star } from 'lucide-react';
+import { Check, ArrowRight, Zap, Users, Briefcase, Star, CheckCircle2, ShieldCheck, Flame } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const PlanCard = ({ title, price, speed, data, features, highlight, icon: Icon, subtext, badge }) => (
-  <div className={`card relative flex flex-col h-full transition-all duration-500 border-2 overflow-hidden ${highlight ? 'border-primary ring-[12px] ring-primary/5 bg-white scale-105 z-10 shadow-2xl' : 'border-primary/5 bg-surface-lowest hover:border-primary/30'}`}>
-    {highlight && (
-      <div className="absolute top-0 right-0 p-4">
-         <div className="bg-primary text-white text-[10px] font-black py-1 px-4 rounded-full uppercase tracking-widest shadow-lg flex items-center gap-2">
-            <Star size={12} fill="currentColor" /> Recommandé
+const PlanCard = ({ title, price, speed, data, icon: Icon, description, features, highlight, badge }) => (
+  <div className={`
+    relative flex flex-col p-10 rounded-stitch transition-all duration-500
+    ${highlight ? 'bg-primary text-white scale-105 z-10 shadow-2xl shadow-primary/40' : 'bg-surface-container-lowest text-on-surface shadow-long-fall hover:-translate-y-2'}
+  `}>
+    {badge && (
+      <div className="absolute top-6 right-6">
+         <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${highlight ? 'bg-white/20 text-white' : 'bg-primary/10 text-primary'}`}>
+            <Flame size={12} fill="currentColor" /> {badge}
          </div>
       </div>
     )}
-    
-    <div className="p-10 pb-0">
-      <div className={`w-16 h-16 rounded-stitch flex items-center justify-center mb-8 ${highlight ? 'bg-primary text-white shadow-xl shadow-primary/20 animate-pulse' : 'bg-primary/5 text-primary'}`}>
-        <Icon size={32} />
+
+    <div className="mb-10">
+      <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-6 ${highlight ? 'bg-white/10' : 'bg-primary/5 text-primary'}`}>
+        <Icon size={24} className="stroke-[2.5px]" />
       </div>
-      <h3 className="text-3xl font-black text-on-surface tracking-tighter mb-2">{title}</h3>
-      <p className="text-on-surface/40 text-[10px] font-black uppercase tracking-[0.2em] mb-6">{subtext}</p>
-      <div className="flex items-baseline gap-2 mb-8 border-b border-primary/5 pb-8">
-        <span className="text-5xl font-black text-on-surface tracking-tighter">{price}</span>
-        <span className="text-on-surface/40 font-black uppercase tracking-widest text-[10px]">/ mois</span>
-      </div>
+      <h3 className="text-3xl font-black tracking-tight uppercase italic mb-2">{title}</h3>
+      <p className={`text-xs font-bold leading-relaxed ${highlight ? 'text-white/60' : 'text-on-surface/40'}`}>
+        {description}
+      </p>
     </div>
 
-    <div className="px-10 space-y-8 flex-grow">
-      <div className="grid grid-cols-2 gap-4">
-         <div className="p-4 bg-primary/5 rounded-stitch border border-primary/10">
-            <p className="text-[10px] font-black text-primary/60 uppercase tracking-widest mb-1">Vitesse</p>
-            <p className="text-xl font-black text-on-surface">{speed}</p>
+    <div className="flex items-baseline gap-1 mb-10">
+      <span className="text-6xl font-black tracking-tighter">${price}</span>
+      <span className={`text-[10px] font-black uppercase tracking-widest ${highlight ? 'text-white/40' : 'text-on-surface/30'}`}>/ mois</span>
+    </div>
+
+    <div className="space-y-8 flex-grow">
+      {/* Specs Grid */}
+      <div className="grid grid-cols-2 gap-3">
+         <div className={`p-4 rounded-stitch-sm ${highlight ? 'bg-white/10' : 'bg-surface-container-low'}`}>
+            <p className={`text-[8px] font-black uppercase tracking-widest mb-1 ${highlight ? 'text-white/40' : 'text-on-surface/30'}`}>Vitesse</p>
+            <p className="text-lg font-black tracking-tight">{speed}</p>
          </div>
-         <div className="p-4 bg-primary/5 rounded-stitch border border-primary/10">
-            <p className="text-[10px] font-black text-primary/60 uppercase tracking-widest mb-1">Volume</p>
-            <p className="text-xl font-black text-on-surface">{data}</p>
+         <div className={`p-4 rounded-stitch-sm ${highlight ? 'bg-white/10' : 'bg-surface-container-low'}`}>
+            <p className={`text-[8px] font-black uppercase tracking-widest mb-1 ${highlight ? 'text-white/40' : 'text-on-surface/30'}`}>Volume</p>
+            <p className="text-lg font-black tracking-tight">{data}</p>
          </div>
       </div>
 
+      {/* Feature List */}
       <ul className="space-y-4">
         {features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-3 text-sm font-bold text-on-surface/60">
-            <div className="mt-1 w-4 h-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-               <Check size={10} strokeWidth={4} />
-            </div>
-            <span>{feature}</span>
+          <li key={i} className="flex items-center gap-3">
+            <CheckCircle2 size={16} className={highlight ? 'text-white/40' : 'text-primary/40'} />
+            <span className={`text-xs font-bold italic uppercase tracking-tight ${highlight ? 'text-white/80' : 'text-on-surface/60'}`}>
+              {feature}
+            </span>
           </li>
         ))}
       </ul>
     </div>
 
-    <div className="p-10 mt-4">
-      <Link to="/register" className={`w-full py-5 rounded-stitch font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 transition-all text-xs ${highlight ? 'bg-primary text-white shadow-2xl hover:bg-primary-dark active:scale-95' : 'bg-surface-container-high text-primary hover:bg-primary/10'}`}>
-        Choisir {title} <ArrowRight size={18} />
-      </Link>
-    </div>
+    <Link 
+      to="/register" 
+      className={`
+        mt-12 py-5 rounded-full font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center gap-2 transition-all active:scale-95
+        ${highlight ? 'bg-white text-primary hover:bg-white/90' : 'bg-primary text-white shadow-xl shadow-primary/20 hover:opacity-90'}
+      `}
+    >
+      Choisir ce plan <ArrowRight size={14} />
+    </Link>
   </div>
 );
 
 const Pricing = () => {
+  const plans = [
+    {
+      title: "Essentiel",
+      price: "49",
+      speed: "30 Mbps",
+      data: "200 Go",
+      description: "Idéal pour les petites familles et le travail à domicile.",
+      icon: Zap,
+      features: ["Router Multi-mode", "Installation standard", "Support 24/7"]
+    },
+    {
+      title: "Populaire",
+      price: "129",
+      speed: "200 Mbps",
+      data: "Illimité",
+      description: "La solution ultime pour les entreprises et le streaming.",
+      icon: Briefcase,
+      highlight: true,
+      badge: "Meilleure Vente",
+      features: ["Priorité réseau", "Antenne Pro", "Support dédié 1h"]
+    },
+    {
+      title: "Famille",
+      price: "50",
+      speed: "100 Mbps",
+      data: "Illimité",
+      description: "Le parfait équilibre entre performance et budget.",
+      icon: Users,
+      features: ["Streaming HD/4K", "Appareils illimités", "Contrôle parental"]
+    }
+  ];
+
   return (
     <div className="bg-surface pb-32 font-display">
-      {/* Hero Header - Orbital Horizon Style */}
-      <section className="bg-white pt-32 pb-40 px-4 relative overflow-hidden text-center">
-        <div className="absolute top-0 left-0 w-full h-[600px] bg-primary/[0.02] -skew-y-3 origin-top-left -z-10"></div>
-        <div className="absolute top-[-100px] right-[-100px] w-96 h-96 bg-primary/5 rounded-full blur-[100px] -z-10"></div>
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-primary/5 rounded-full mb-8 border border-primary/10">
-               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Tarifs Likasi 2025</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-black mb-8 text-on-surface tracking-tighter uppercase italic">
-            La haute vitesse, <span className="text-primary not-italic">sans limites.</span>
-          </h1>
-          <p className="text-xl text-on-surface/60 max-w-2xl mx-auto font-medium leading-relaxed">
-            Des forfaits conçus pour connecter chaque foyer et entreprise de Likasi au reste du monde avec le meilleur du satellite.
-          </p>
-        </div>
+      {/* Pricing Header */}
+      <section className="pt-40 pb-32 px-4 text-center">
+         <div className="max-w-4xl mx-auto flex flex-col items-center gap-8 animate-in fade-in slide-in-from-top duration-1000">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Nos Forfaits</h4>
+            <h1 className="text-5xl md:text-8xl font-black text-on-surface leading-[0.9] tracking-tighter uppercase italic">
+              Choisissez celui qui vous <span className="text-primary not-italic underline decoration-primary/20 underline-offset-8">convient</span> le mieux.
+            </h1>
+            <p className="text-lg text-on-surface/40 max-w-xl font-medium leading-relaxed italic">
+              "L'excellence de la technologie satellite accessible à tous les budgets à Likasi."
+            </p>
+         </div>
       </section>
 
       {/* Pricing Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-20">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-24">
         <div className="grid lg:grid-cols-3 gap-8">
-          <PlanCard 
-            title="Essentiel"
-            subtext="Débuter sereinement"
-            price="79$"
-            speed="30 Mbps"
-            data="200 Go"
-            icon={Zap}
-            features={[
-              "Installation standard incluse",
-              "Router NOVA+ inclus",
-              "Latence réduite (Satellite LEO)",
-              "Assistance technique 24/7"
-            ]}
-          />
-          <PlanCard 
-            title="Pro"
-            badge="Populaire"
-            subtext="Performance maximale"
-            highlight={true}
-            price="149$"
-            speed="200 Mbps"
-            data="Illimité"
-            icon={Briefcase}
-            features={[
-              "Volume de données illimité",
-              "Priorité réseau haute",
-              "Antenne pro haute performance",
-              "Secteur minier éligible",
-              "Support prioritaire dédié"
-            ]}
-          />
-          <PlanCard 
-            title="Famille"
-            subtext="Multi-connexions"
-            price="99$"
-            speed="100 Mbps"
-            data="Illimité"
-            icon={Users}
-            features={[
-              "Streaming 4K simultané",
-              "Données illimitées",
-              "Router Mesh compatible",
-              "Gestion parentale incluse",
-              "Engagement 12 mois"
-            ]}
-          />
+          {plans.map((plan, idx) => (
+            <PlanCard key={idx} {...plan} />
+          ))}
         </div>
       </section>
 
-      {/* Tailored Solution Section */}
-      <section className="max-w-5xl mx-auto px-4 mt-32">
-        <div className="card bg-atmospheric text-white border-none p-12 flex flex-col md:flex-row items-center gap-10 overflow-hidden relative">
-           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full translate-x-1/2 -translate-y-1/2"></div>
-           <div className="md:w-2/3 relative z-10">
-              <h2 className="text-4xl font-black mb-6 tracking-tight">Besoin d'une solution sur-mesure ?</h2>
-              <p className="text-white/70 text-lg leading-relaxed font-medium">
-                Pour les grandes entreprises, les institutions ou les sites miniers reculés, contactez notre équipe dédiée pour une infrastructure satellitaire personnalisée.
-              </p>
-           </div>
-           <div className="md:w-1/3 w-full relative z-10">
-              <Link to="/support" className="w-full py-5 bg-white text-primary font-black uppercase tracking-[0.2em] rounded-stitch flex items-center justify-center gap-3 shadow-2xl hover:bg-surface-lowest transition-all">
-                 Contact Pro <ArrowRight size={20} />
-              </Link>
-           </div>
-        </div>
+      {/* Comparison Nudge */}
+      <section className="max-w-3xl mx-auto px-4 text-center">
+         <div className="p-12 rounded-stitch-sm bg-surface-container-low border border-on-surface/5 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="text-left">
+               <h3 className="text-xl font-black mb-1 uppercase italic tracking-tight">Besoin de plus ?</h3>
+               <p className="text-xs font-bold text-on-surface/40 uppercase tracking-widest">Contactez notre équipe de vente pour les besoins miniers.</p>
+            </div>
+            <Link to="/support" className="px-8 py-4 bg-on-surface text-surface rounded-full font-black text-[10px] uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all">
+               Nous contacter
+            </Link>
+         </div>
       </section>
 
-      {/* Small FAQ nudge */}
-      <div className="mt-20 text-center max-w-2xl mx-auto px-4">
-         <p className="text-xs font-bold text-on-surface/40 leading-relaxed uppercase tracking-[0.2em]">
-            * Les prix indiqués incluent la location de l'équipement standard. Frais d'activation applicables à la première inscription. 
-            Débit maximum fluctuant selon les conditions atmosphériques.
+      {/* Local Support Banner */}
+      <div className="mt-32 border-t border-on-surface/5 pt-16 text-center">
+         <p className="text-[10px] font-black uppercase tracking-[0.3em] text-on-surface/20">
+           Toutes nos offres incluent un support physique à Likasi
          </p>
       </div>
     </div>

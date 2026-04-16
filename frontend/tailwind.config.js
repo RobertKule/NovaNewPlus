@@ -8,12 +8,16 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#0A5C8E',
-          container: '#1E88E5',
+          DEFAULT: '#00446c',
+          container: '#0a5c8e',
+          fixed: '#cee5ff',
+          dim: '#96ccff'
         },
         secondary: {
-          DEFAULT: '#1E88E5',
+          DEFAULT: '#0060a8',
           container: '#47a1ff',
+          fixed: '#d3e4ff',
+          dim: '#a2c9ff'
         },
         surface: {
           DEFAULT: '#f8f9fb',
@@ -21,24 +25,27 @@ export default {
           dim: '#d8dadc',
           container: {
             low: '#f2f4f6',
+            DEFAULT: '#eceef0',
             high: '#e6e8ea',
+            highest: '#e0e3e5'
           }
         },
         on: {
           surface: '#191c1e',
-          primary: '#ffffff',
+          primary: '#ffffff'
         },
         error: '#ba1a1a',
       },
       fontFamily: {
         display: ['Manrope', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        body: ['Inter', 'sans-serif']
       },
       borderRadius: {
-        'stitch': '4px',
+        'stitch': '24px',
+        'stitch-sm': '12px'
       },
       boxShadow: {
-        'long-fall': '0 20px 40px rgba(25, 28, 30, 0.06)',
+        'long-fall': '0 20px 40px rgba(25, 28, 30, 0.06)'
       },
       backgroundImage: {
         'atmospheric': 'linear-gradient(135deg, #0A5C8E 0%, #1E88E5 100%)',
