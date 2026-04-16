@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body bg-surface text-on-surface antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-surface-lowest/80 backdrop-blur-md;
+  }
+
+  .btn-primary {
+    @apply bg-atmospheric text-white px-6 py-2.5 rounded-stitch font-semibold transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply bg-surface-container-high text-primary px-6 py-2.5 rounded-stitch font-semibold transition-all hover:bg-surface-dim active:scale-[0.98] disabled:opacity-50;
+  }
+
+  .card {
+    @apply bg-surface-lowest rounded-stitch shadow-long-fall p-6 transition-all;
+  }
+
+  /* Zero-border sectioning from design system */
+  .section-alt {
+    @apply bg-surface-container-low;
+  }
+}
+
+/* Custom animations for satellite vibes */
+@keyframes connectivity-pulse {
+  0% {
+    opacity: 0.1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0.1;
+  }
+}
+
+.wave-pulse {
+  animation: connectivity-pulse 4s ease-in-out infinite;
+}
