@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Globe, Instagram, Twitter, Facebook } from 'lucide-react';
+import { Mail, Phone, MapPin, Globe } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -20,13 +20,6 @@ const Footer = () => {
             <p className="text-on-surface/50 text-sm leading-relaxed max-w-xs">
               Connecter les zones les plus reculées avec une technologie satellite de pointe. Haute performance, latence réduite, partout.
             </p>
-            <div className="flex gap-4">
-              {[Instagram, Twitter, Facebook].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full bg-on-surface/5 text-on-surface/40 flex items-center justify-center hover:bg-primary hover:text-white transition-all">
-                  <Icon size={18} />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Links Grid */}

@@ -20,14 +20,14 @@ export default {
           dim: '#a2c9ff'
         },
         surface: {
-          DEFAULT: '#f8f9fb',
-          lowest: '#ffffff',
+          DEFAULT: '#6e7a91',
+          lowest: '#5f5656',
           dim: '#d8dadc',
           container: {
-            low: '#f2f4f6',
-            DEFAULT: '#eceef0',
-            high: '#e6e8ea',
-            highest: '#e0e3e5'
+            low: '#88a0b8',
+            DEFAULT: '#99b0c7',
+            high: '#cdd2d8',
+            highest: '#899aa5'
           }
         },
         on: {
