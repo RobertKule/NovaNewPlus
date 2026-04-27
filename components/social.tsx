@@ -34,7 +34,7 @@ export function Testimonials() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {reviews.map((review, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -44,8 +44,8 @@ export function Testimonials() {
             >
               <Quote className="w-10 h-10 text-blue-600/20 dark:text-blue-400/20 absolute top-6 right-6" />
               <div className="flex gap-1 mb-6">
-                {[1,2,3,4,5].map(star => (
-                   <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                {[1, 2, 3, 4, 5].map(star => (
+                  <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
               <p className="text-slate-700 dark:text-slate-300 text-lg mb-6 leading-relaxed">&quot;{review.text}&quot;</p>
@@ -124,15 +124,15 @@ export function Footer() {
             </div>
             <p className="max-w-xs text-sm">Fournisseur d&apos;accès internet haut débit. Connecter Likasi au reste du monde.</p>
           </div>
-          
+
           <div className="flex gap-4">
-             <Link href="https://wa.me/243000000000" className="bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 font-bold text-white px-6 py-3 rounded-full transition-colors flex items-center gap-2 shadow-lg shadow-emerald-500/20">
-               <MessageCircle className="w-5 h-5" />
-               Nous Contacter
-             </Link>
+            <Link href="https://wa.me/243970550517" target="_blank" rel="noopener noreferrer" className="bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 font-bold text-white px-6 py-3 rounded-full transition-colors flex items-center gap-2 shadow-lg shadow-emerald-500/20">
+              <MessageCircle className="w-5 h-5" />
+              Nous Contacter
+            </Link>
           </div>
         </div>
-        
+
         <div className="text-center text-sm">
           <p>&copy; {new Date().getFullYear()} NOVA+ Connect. Tous droits réservés.</p>
         </div>
@@ -143,8 +143,10 @@ export function Footer() {
 
 export function WhatsAppFAB() {
   return (
-    <Link 
-      href="https://wa.me/243000000000?text=Bonjour, je souhaite avoir plus d'informations sur NOVA+."
+    <Link
+      href="https://wa.me/243970550517?text=Bonjour, je souhaite avoir plus d'informations sur NOVA+."
+      target="_blank"
+      rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 bg-emerald-500 text-white p-4 rounded-full shadow-2xl shadow-emerald-500/40 hover:scale-110 hover:bg-emerald-400 transition-all duration-300 flex items-center justify-center group"
       aria-label="Nous contacter sur WhatsApp"
     >
