@@ -42,7 +42,38 @@ export default function LoginPage() {
         firebaseEmail = `${identifier.replace(/\s+/g, "")}@nova.plus`;
       }
 
-      await signInWithEmailAndPassword(auth, firebaseEmail, password);
+      try {
+        await signInWithEmailAndPassword(auth, firebaseEmail, password);
+      } catch (err: any) {
+        // Auto-create SuperAdmin if credentials match env vars and account doesn't exist
+        const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+        const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
+
+        if (
+          (err.code === "auth/invalid-credential" || err.code === "auth/user-not-found") &&
+          firebaseEmail === adminEmail &&
+          password === adminPassword
+        ) {
+          // Create the superAdmin account on first login
+          const { createUserWithEmailAndPassword, updateProfile } = await import("firebase/auth");
+          const { doc, setDoc, serverTimestamp } = await import("firebase/firestore");
+          const { db } = await import("@/lib/firebase");
+
+          const userCred = await createUserWithEmailAndPassword(auth, firebaseEmail, password);
+          await updateProfile(userCred.user, { displayName: "Super Admin" });
+          await setDoc(doc(db, "users", userCred.user.uid), {
+            uid: userCred.user.uid,
+            displayName: "Super Admin",
+            email: firebaseEmail,
+            role: "admin",
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp(),
+          });
+        } else {
+          throw err; // re-throw for the outer catch
+        }
+      }
+
       setSuccess(true);
       setTimeout(() => router.push("/dashboard"), 1000);
     } catch (err: any) {
