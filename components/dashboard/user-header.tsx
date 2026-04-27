@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
-import { LogOut, Bell, Settings, User as UserIcon, Search, Menu, X, ChevronRight } from "lucide-react";
+import { LogOut, Bell, Settings, User as UserIcon, Search, Menu, X, ChevronRight, Shield, LayoutDashboard } from "lucide-react";
 import ThemeToggle from "@/components/theme-toggle";
 import Link from "next/link";
 import Image from "next/image";
@@ -57,15 +57,6 @@ export default function UserHeader() {
                 {link.label}
               </Link>
             ))}
-            {adminLinks.map((link) => (
-              <Link 
-                key={link.href} 
-                href={link.href} 
-                className="text-sm font-bold text-blue-600 dark:text-blue-400"
-              >
-                {link.label}
-              </Link>
-            ))}
           </nav>
         </div>
 
@@ -109,16 +100,48 @@ export default function UserHeader() {
               </button>
               
               {/* Dropdown Menu (Simplified for MVP) */}
-              <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all translate-y-2 group-hover:translate-y-0">
-                <button className="w-full px-4 py-2 text-left text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2">
-                  <Settings className="w-4 h-4" /> Paramètres
-                </button>
-                <button 
-                  onClick={() => signOut()}
-                  className="w-full px-4 py-2 text-left text-sm font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 flex items-center gap-2"
-                >
-                  <LogOut className="w-4 h-4" /> Déconnexion
-                </button>
+              <div className="absolute right-0 top-full mt-2 w-64 bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl border border-slate-100 dark:border-slate-800 py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all translate-y-2 group-hover:translate-y-0 overflow-hidden">
+                <div className="px-4 py-2 mb-2 border-b border-slate-50 dark:border-slate-800/50">
+                  <p className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-tight truncate">{profile?.displayName || user?.displayName || "Profil"}</p>
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest truncate">{user?.email}</p>
+                </div>
+
+                <div className="px-2 space-y-0.5">
+                  <Link href="/dashboard" className="w-full px-4 py-2.5 text-left text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl flex items-center gap-3 transition-colors">
+                    <UserIcon className="w-4 h-4" /> Dashboard
+                  </Link>
+                  <button className="w-full px-4 py-2.5 text-left text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl flex items-center gap-3 transition-colors">
+                    <Settings className="w-4 h-4" /> Paramètres
+                  </button>
+                </div>
+
+                {adminLinks.length > 0 && (
+                  <div className="mt-3 pt-3 border-t border-slate-50 dark:border-slate-800">
+                    <div className="px-4 py-1">
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Administration</p>
+                    </div>
+                    <div className="px-2 space-y-0.5">
+                      {adminLinks.map((link) => (
+                        <Link 
+                          key={link.href} 
+                          href={link.href}
+                          className="w-full px-4 py-2.5 text-left text-sm font-bold text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl flex items-center gap-3 transition-colors"
+                        >
+                          <Shield className="w-4 h-4" /> {link.label.replace('Admin: ', '')}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="mt-3 pt-3 border-t border-slate-50 dark:border-slate-800 px-2">
+                  <button 
+                    onClick={() => signOut()}
+                    className="w-full px-4 py-2.5 text-left text-sm font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-xl flex items-center gap-3 transition-colors"
+                  >
+                    <LogOut className="w-4 h-4" /> Déconnexion
+                  </button>
+                </div>
               </div>
             </div>
           </div>
