@@ -8,27 +8,29 @@ import UserHeader from "@/components/dashboard/user-header";
 import FAQSection from "@/components/support/faq-section";
 
 const CONTACT_METHODS = [
-  { 
-    icon: <MessageCircle className="w-6 h-6" />, 
-    title: "WhatsApp Support", 
-    desc: "Réponse en moins de 15 min", 
-    href: "https://wa.me/243000000000", 
+  {
+    icon: <MessageCircle className="w-6 h-6" />,
+    title: "WhatsApp Support",
+    desc: "Réponse en moins de 15 min",
+    href: "https://wa.me/243970550517",
+    external: true,
     color: "bg-emerald-50 text-emerald-600",
     buttonText: "Ouvrir WhatsApp"
   },
-  { 
-    icon: <Ticket className="w-6 h-6" />, 
-    title: "Tickets Support", 
-    desc: "Suivez vos demandes techniques", 
-    href: "/support/tickets", 
+  {
+    icon: <Ticket className="w-6 h-6" />,
+    title: "Tickets Support",
+    desc: "Suivez vos demandes techniques",
+    href: "/support/tickets",
     color: "bg-blue-50 text-blue-600",
     buttonText: "Mes tickets"
   },
-  { 
-    icon: <Phone className="w-6 h-6" />, 
-    title: "Appel Direct", 
-    desc: "Disponible 8h - 20h", 
-    href: "tel:+243000000000", 
+  {
+    icon: <Phone className="w-6 h-6" />,
+    title: "Appel Direct",
+    desc: "Disponible 8h - 20h",
+    href: "tel:+243970550517",
+    external: true,
     color: "bg-slate-50 text-slate-600",
     buttonText: "Appeler"
   }
@@ -69,9 +71,10 @@ export default function SupportPage() {
               </div>
               <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight mb-2">{method.title}</h3>
               <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-8">{method.desc}</p>
-              
-              <Link 
+
+              <Link
                 href={method.href}
+                {...(method.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:gap-3 transition-all"
               >
                 {method.buttonText} <ArrowRight className="w-4 h-4" />
@@ -97,7 +100,7 @@ export default function SupportPage() {
               <p className="text-slate-400 font-medium text-sm mb-8 leading-relaxed">
                 Si vous n&apos;avez pas trouvé de réponse dans la FAQ, ouvrez un ticket technique pour une assistance personnalisée.
               </p>
-              <Link 
+              <Link
                 href="/support/new"
                 className="w-full bg-white text-slate-900 py-4 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
@@ -115,7 +118,7 @@ export default function SupportPage() {
                   <span className="text-sm font-bold text-slate-700 dark:text-slate-300">support@novaplus.cd</span>
                 </div>
                 <div className="flex items-center gap-3">
-                   <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+                  <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400">
                     <Phone className="w-4 h-4" />
                   </div>
                   <span className="text-sm font-bold text-slate-700 dark:text-slate-300">+243 000 000 000</span>
@@ -127,8 +130,10 @@ export default function SupportPage() {
       </main>
 
       {/* Floating WhatsApp Action (Visible on mobile) */}
-      <Link 
-        href="https://wa.me/243000000000"
+      <Link
+        href="https://wa.me/243970550517"
+        target="_blank"
+        rel="noopener noreferrer"
         className="fixed bottom-8 right-8 w-16 h-16 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 hover:scale-110 active:scale-95 transition-all z-50 group sm:bottom-12 sm:right-12"
       >
         <MessageCircle className="w-8 h-8" />
